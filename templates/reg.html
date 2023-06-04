@@ -1,124 +1,30 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Регистрация</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='reg.css') }}">
-    <link rel="stylesheet" type="text/css" href="reg.css">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Nunito" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Nunito">
+	<link rel="stylesheet" type="text/css" href="static/style.css">
+	<link rel="stylesheet" type="text/css" href="static/reg.css">
+	<title>Register</title>
 </head>
 <body>
-    <div class="content">
-        <div class="logo-text">School chat</div>
-        <form class="form" method="POST">
-            <div class="form-content-wrapper">
-                <div class="h2-tip">Регистрация</div>
-                <div class="inp1" name="email-wrapper">
-                    <input type="email" name="email" class="input" placeholder="E-mail" id="inp1" autocomplete="off">
-                </div>
-                <div class="inp2" name="password-wrapper">
-                    <input type="password" name="password" class="input" placeholder="Пароль" id="inp2" autocomplete="off">
-                </div>
-                <div class="submit-btn primary-btn" onclick="send()">Создать аккаунт</div>
-                 <div class="text-href">Регистрируясь, вы принимаете<span> <a href="license" class="href"> Условия лицензионного договора</a></span></div>
-            </div>
-            <div class="footer footer-wrapper">
-                <div class="text-href">Уже есть аккаунт? <span> <a href="/login" class="href"> Войдите</a></span></div>
-            </div>
-        </form>
-    </div>
-    <script type="text/javascript">
-        const email_inp = document.getElementsByName('email')[0]
-        const password_inp = document.getElementsByName('password')[0]
-        const email_wr = document.getElementsByName('email-wrapper')[0]
-        const password_wr = document.getElementsByName('password-wrapper')[0]
-
-        function send_reg(email, password) {
-            let form = new FormData
-            let answer;
-            form.append('email', email);
-            form.append('password', password);
-            let xhr = new XMLHttpRequest();
-            xhr.open("POST", "/registration");
-            xhr.send(form);
-            xhr.onload = () => {
-                answer = xhr.response;
-                const parser = new DOMParser();
-                const htmlDoc = parser.parseFromString(answer, 'text/html');
-                let html = document.createElement('html');
-                html.append(htmlDoc.head, htmlDoc.body);
-                document.replaceChild(html, document.childNodes[1]);
-            };
-
-        }
-
-        async function send() {
-            let url = 'try-register';
-            let user = {
-                email: email_inp.value,
-                password: password_inp.value
-            }
-            let response = await fetch(url, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-              },
-              body: JSON.stringify(user)
-            });
-
-            let json = await response.json();
-            console.log(json)
-
-            email_inp.value = json['value-list']['email']
-            password_inp.value = json['value-list']['password']
-            if (json['error-list']['email'] != null) {
-                email_inp.classList.add('incorrect-input');
-                email_wr.classList.add('incorrect-input-wrap');
-                email_wr.setAttribute("data-error-text", json['error-list']['email']);
-            }
-            if (json['error-list']['password'] != null) {
-                password_inp.classList.add('incorrect-input');
-                password_wr.classList.add('incorrect-input-wrap');
-                password_wr.setAttribute("data-error-text", json['error-list']['password']);
-            }
-            if (json['already-register'] === true) {
-                email_wr.setAttribute('data-error-text', 'Уже зарегестрирован')
-                email_inp.classList.add('incorrect-input')
-                email_wr.classList.add('incorrect-input-wrap')
-            }
-            if (json['already-register'] === false &&
-                json['error-list']['email'] === undefined &&
-                json['error-list']['password'] === undefined) {
-                send_reg(json['value-list']['email'], json['value-list']['password'])
-            }
-        }
-    </script>
-    <script>
-        if ("{{errors|safe}}" !== "" && "{{values|safe}}" !== "") {
-            const inputs = [
-                document.getElementById("inp1"),
-                document.getElementById("inp2")
-            ];
-            const errors = {{errors|safe}}
-            const values = {{values|safe}}
-
-            for (let i in [0, 1]) {
-                let elem
-                elem = inputs[i]
-                elem.value = values[i]
-            }
-
-            for (let error of errors) {
-                let elem;
-                let elem_wrap;
-                elem = document.getElementById("inp" + error[0])
-                elem.classList.add("incorrect-input")
-                elem_wrap = document.querySelector(".inp" + error[0])
-                elem_wrap.classList.add("incorrect-input-wrap")
-                elem_wrap.setAttribute("data-title", error[1])
-            }
-        }
-    </script>
+	<div class="page-logotext">SchoolChat24</div>
+	<div class="wrapper">
+		<div class="form">
+			<div  class="form-title">Регистрация</div>
+			<input type="text" class="name inline" placeholder="Имя"><br>
+			<input type="email" class="e-mail inline" placeholder="E-mail"><br>
+			<input type="password" class="psw inline" placeholder="Пароль"><br>
+			<div class="btn accept inline">Создать аккаунт</div><br>
+			<hr>
+			<div class="nav-links inline">
+				<div class="nav-link">
+					<span class="small">Уже есть аккаунт? </span>
+					<a href="login" class="small"> Войдите</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

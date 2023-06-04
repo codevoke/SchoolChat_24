@@ -1,0 +1,55 @@
+body {
+	margin: 0;
+	background: var(--body-bg-dark);
+	color: var(--text-secondary-color);
+	overflow-y: hidden;
+}
+
+.header {
+	position: relative;
+	box-sizing: border-box;
+	margin: 0 100px;
+	padding: 0 27px;
+	height: 75px;
+	border-bottom: 2px solid var(--body-bg-light);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.nav-wrapper {
+	display: inline-flex;
+}
+.nav-wrapper * {
+	margin: 0 calc(33px / 8);
+}
+
+.ellipse {
+	position: absolute;
+	width: 491px;
+	height: 408px;
+	left: 245px;
+	top: 208px;
+}
+
+
+.zagibulina-1 {
+	position: absolute;
+	width: 150.5px;
+	height: 380.5px;
+	left: 694px;
+	top: 221px;
+}
+.zagibulina-2 {
+	position: absolute;
+	width: 165px;
+	height: 480px;
+	left: 811px;
+	top: 172px;
+}
+.zagibulina-3 {
+	position: absolute;
+	width: 307px;
+	height: 777px;
+	left: 816px;
+	top: 23px;
+}

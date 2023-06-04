@@ -1,0 +1,134 @@
+:root {
+	--body-primary-font-family: 'Nunito';
+	--body-bg-light: #499E8F;
+	--body-bg-dark: #193639;
+
+	--text-primary-color: #000000;
+	--text-secondary-color: #ffffff;
+	--text-font-size-primary: 24px;
+
+	--btn-text-primary-color: #ffffff;
+	--btn-primary-border-radius: 10px;
+
+	--href-primary-color: #3093EE;
+	--href-primary-text-decoration: none;
+
+	--hr-primary-border: 2px solid #000000;
+
+	--dialogs-hover-event: #4B8F83;
+	--dialogs-active-event: #1F806E;
+
+	--form-primary-elem-margin-bottom: 21px;
+	--form-primary-bg-color: #D9D9D9;
+	--form-accept-color: #25A558;
+	--form-reject-color: #a52525;
+	
+	--input-primary-bg: #D0CFCF;
+	--input-primary-border: 0.5px solid #000000;
+	--input-primary-border-radius: 10px;
+	--input-primary-padding: 11px 21px;
+
+	--primary-disabled-text: #ffffff50;
+	--primary-disabled-cursor: not-allowed;
+}
+
+body {
+	background-color: var(--body-bg-light);
+	font-family: var(--body-primary-font-family);
+	font-size: var(--text-font-size-primary);
+	color: var(--text-primary-color);
+}
+
+a {
+	color: var(--href-primary-color);
+	text-decoration: var(--href-primary-text-decoration);
+}
+
+hr {
+	box-sizing: border-box;
+	border-top: var(--hr-primary-border);
+	margin: 2px;
+}
+
+.btn {
+	position: relative;
+	display: inline-flex;
+	padding: 8px 60px;
+	color: var(--btn-text-primary-color);
+	border-radius: var(--btn-primary-border-radius);
+	cursor: pointer;
+	user-select: none;
+	box-sizing: border-box;
+}
+.btn:hover {
+	filter: brightness(0.9);
+}
+.btn:active {
+	filter: brightness(0.75);
+}
+.btn-center {
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.disabled {
+	color: var(--primary-disabled-text);
+	cursor: var(--primary-disabled-cursor);
+}
+
+input[type=text], 
+input[type=email], 
+input[type=password] {
+	background-color: var(--input-primary-bg);
+	border:  0.5px solid black;
+	border-radius: var(--input-primary-border-radius);
+	padding: var(--input-primary-padding);
+	border: var(--input-primary-border);
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 27px;
+	box-sizing: border-box;
+}
+input[type=text]:active, input[type=text]:focus, 
+input[type=email]:active, input[type=email]:focus, 
+input[type=password]:active, input[type=password]:focus {
+	box-sizing: border-box;
+	outline: none;
+	border: 1.5px solid black;
+}
+
+form, .form {
+	background-color: var(--form-primary-bg-color);
+	border-radius: 10px;
+}
+form *:not(.nav-link, hr), .form *:not(.nav-link, hr) {
+	margin-bottom: var(--form-primary-elem-margin-bottom);
+}
+form *:last-child, .form *:last-child {
+	margin-bottom: 0;
+}
+.form-title {
+	margin-top: 17px;
+	font-size: 32px;
+	font-weight: 500;
+	line-height: 44px;
+	letter-spacing: 0em;
+	text-align: center;
+}
+
+.inline {
+	position: relative;
+	width: 100%;
+}
+
+.accept {
+	background-color: var(--form-accept-color);
+}
+.reject {
+	background-color: var(--form-reject-color);
+}
+.btn.inline {
+	display: inline-flex;
+    justify-content: center;
+}

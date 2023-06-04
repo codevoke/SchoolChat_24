@@ -22,10 +22,15 @@ def register_page():
     return send_file("templates/reg.html")
 
 
-@app.route("/me")
+@app.route("/chat")
 @jwt_required()
 def msg_page():
     return send_file("templates/chat.html")
+
+
+@app.route("/forgot-password")
+def forgot_password():
+    return send_file("templates/forgot-password.html")
 
 
 @jwt.unauthorized_loader
